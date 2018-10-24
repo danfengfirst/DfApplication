@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.df.audiorecord.widgets.TimeAndVolumeView
+        android:id="@+id/time_volume"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y59"
+        android:layout_above="@+id/wave_fl"
+        android:layout_centerInParent="true" />
+
+    <FrameLayout
+        android:id="@+id/wave_fl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y117"
+        android:layout_centerInParent="true">
+
+        <com.df.audiorecord.widgets.WaveformView
+            android:id="@+id/wave_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y117" />
+
+        <com.df.audiorecord.widgets.AudioRecordButton
+            android:id="@+id/audio_bt"
+            android:layout_width="@dimen/y117"
+            android:layout_height="@dimen/y117"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</RelativeLayout>

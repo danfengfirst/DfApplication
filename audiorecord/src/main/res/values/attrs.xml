@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoginButtonStyle">
+        <attr name="loginbt_bg" format="color"></attr>
+        <attr name="loginbt_textcolor" format="color"></attr>
+        <attr name="loginbt_right" format="color"></attr>
+        <attr name="loginbt_radius" format="dimension"></attr>
+        <attr name="loginbt_textsize" format="dimension"></attr>
+        <attr name="loginbt_text" format="string"></attr>
+        <attr name="loginbt_src" format="reference"></attr>
+    </declare-styleable>
+    <declare-styleable name="EmptyView">
+        <attr name="loading_layout" format="reference" />
+        <attr name="nodata_layout" format="reference" />
+        <attr name="errornet_layout" format="reference" />
+        <attr name="unreachable_layout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MyCalendar">
+        <attr name="dateformat" format="string"></attr>
+        <attr name="titleSize" format="dimension"></attr>
+        <attr name="titleColor" format="color"></attr>
+        <attr name="goIcon" format="reference"></attr>
+        <attr name="preIcon" format="reference"></attr>
+        <attr name="dayInMonthColor" format="color"></attr>
+        <attr name="dayOutMonthcolor" format="color"></attr>
+        <attr name="todayColor" format="color"></attr>
+        <attr name="todayEmptycircleColor" format="color"></attr>
+        <attr name="todayFillcircleColor" format="color"></attr>
+        <attr name="calendarbackground" format="color|reference"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="StarBar">
+        <!--星星间距-->
+        <attr format="dimension" name="starDistance"/>
+        <!--星星大小-->
+        <attr format="dimension" name="starSize"/>
+        <!--星星个数-->
+        <attr format="integer" name="starCount"/>
+        <!--星星空图-->
+        <attr format="reference" name="starEmpty"/>
+        <!--星星满图-->
+        <attr format="reference" name="starFill"/>
+    </declare-styleable>
+
+    <declare-styleable name="EmptyLayout">
+        <attr name="elEmptyLayout"  format="reference"/>
+        <attr name="elErrorLayout"  format="reference"/>
+        <attr name="elLoadingLayout"  format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ChromeLikeSwipeLayout">
+        <attr name="clwl_radius" format="dimension" />
+        <attr name="clwl_gap" format="dimension" />
+        <attr name="clwl_circleColor" format="color" />
+        <attr name="clwl_collapseDuration" format="integer" />
+        <attr name="clwl_rippleDuration" format="integer" />
+        <attr name="clwl_gummyDuration" format="integer" />
+        <attr name="clwl_maxHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer"/>
+        <attr name="animDuration" format="integer"/>
+        <attr name="animAlphaStart" format="float"/>
+        <attr name="expandDrawable" format="reference"/>
+        <attr name="collapseDrawable" format="reference"/>
+    </declare-styleable>
+
+        <attr name="textFieldStyle" format="reference"/>
+
+</resources>

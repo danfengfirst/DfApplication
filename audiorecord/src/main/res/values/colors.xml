@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorGray">#CCC</color>
+    <color name="audio_record_circle_bg">#FFCBF9FF</color>
+    <color name="audio_recording_circle_bg">#A0EDF7</color>
+    <color name="audio_record_circle_border">#FF4DD3D2</color>
+    <color name="volume_wave">#FFF6583D</color>
+    <color name="black_text_0.6">#8B8B8B</color>
+</resources>
