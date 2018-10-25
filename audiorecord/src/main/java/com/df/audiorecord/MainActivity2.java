@@ -29,13 +29,14 @@ public class MainActivity2 extends AppCompatActivity {
         mInstance = this;
         mAudioView = findViewById(R.id.audio_view);
         mAudioView.bindActivity(mInstance);
+        mAudioView.setAudioEnable(true);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //没有权限的情况下不响应
-        mAudioView.setAudioEnable(checkPermission());
+     //   mAudioView.setAudioEnable(checkPermission());
     }
 
     public static MainActivity2 getmInstance() {

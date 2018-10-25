@@ -14,6 +14,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -265,6 +266,7 @@ public class AudioRecordButton extends View {
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         getParent().requestDisallowInterceptTouchEvent(true);
+        this.setEnabled(checkPermission());
         return super.dispatchTouchEvent(event);
     }
 
@@ -400,43 +402,53 @@ public class AudioRecordButton extends View {
      * @return
      */
     private boolean checkPermission() {
-        final boolean[] record_permissiont = {false};
-        final boolean[] write_permissiont = {false};
-        RxPermissions permissions = new RxPermissions(mActivity);
-        permissions.requestEach(Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Consumer<Permission>() {
-            @Override
-            public void accept(Permission permission) throws Exception {
-                if (permission.name == Manifest.permission.RECORD_AUDIO) {
-                    if (permission.granted) {
-                        // 用户已经同意该权限
-                        record_permissiont[0] = true;
-                    } else if (permission.shouldShowRequestPermissionRationale) {
-                        // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                        record_permissiont[0] = false;
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+            if (AudioRecordManager.getInstance().checkAudioPermission(mContext)) {
+                return true;
+            } else {
+                ToastUitl.showShort(mContext, "请前往设置中开启录音权限");
+                return false;
+            }
+        } else {
+            final boolean[] record_permissiont = {false};
+            final boolean[] write_permissiont = {false};
+            RxPermissions permissions = new RxPermissions(mActivity);
+            permissions.requestEach(Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Consumer<Permission>() {
+                @Override
+                public void accept(Permission permission) throws Exception {
+                    if (permission.name == Manifest.permission.RECORD_AUDIO) {
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            record_permissiont[0] = true;
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            record_permissiont[0] = false;
 
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            ToastUitl.showShort(mContext, "请前往设置中开启" + permission.name + "权限");
+                            record_permissiont[0] = false;
+                        }
                     } else {
-                        // 用户拒绝了该权限，并且选中『不再询问』
-                        ToastUitl.showShort(mContext, "请前往设置中开启" + permission.name + "权限");
-                        record_permissiont[0] = false;
-                    }
-                } else {
-                    if (permission.granted) {
-                        // 用户已经同意该权限
-                        write_permissiont[0] = true;
-                    } else if (permission.shouldShowRequestPermissionRationale) {
-                        // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                        write_permissiont[0] = false;
-                    } else {
-                        // 用户拒绝了该权限，并且选中『不再询问』
-                        ToastUitl.showShort(mContext, "请前往设置中开启" + permission.name + "权限");
-                        write_permissiont[0] = false;
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            write_permissiont[0] = true;
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            write_permissiont[0] = false;
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            ToastUitl.showShort(mContext, "请前往设置中开启" + permission.name + "权限");
+                            write_permissiont[0] = false;
+                        }
                     }
                 }
-            }
-        });
-        return record_permissiont[0] && write_permissiont[0];
+            });
+            return record_permissiont[0] && write_permissiont[0];
+        }
     }
+
 
     public void setOnRecordingListener(OnRecordingListener li) {
         mRecordingListener = li;
