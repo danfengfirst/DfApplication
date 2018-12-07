@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="expandable_item" type="id"></item>
+    <item name="expandable_bottom_show" type="id"></item>
+
+</resources>

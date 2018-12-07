@@ -22,6 +22,7 @@ import com.df.audiorecord.MainActivity;
 import com.df.audiorecord.R;
 import com.df.audiorecord.record.AudioPlayManager;
 import com.df.audiorecord.record.AudioRecordManager;
+import com.df.audiorecord.record.AudioRecordManager2;
 import com.df.audiorecord.record.OnPlayingListener;
 import com.df.audiorecord.record.OnRecordingListener;
 import com.df.audiorecord.utils.BitmapUtil;
@@ -107,8 +108,8 @@ public class AudioRecordButton extends View {
                     }
                     mReady = true;
                     setState(STATE_RECORDING);
-                    AudioRecordManager.getInstance().prepare(mContext);
-                    AudioRecordManager.getInstance().startRecord();
+                    AudioRecordManager2.getInstance().prepare(mContext);
+                    AudioRecordManager2.getInstance().startRecord();
                     if (mRecordingListener != null) {
                         mRecordingListener.startRecord();
                     }
@@ -133,9 +134,9 @@ public class AudioRecordButton extends View {
                         //如果录制完毕则进行播放,重新播放
                         AudioPlayManager.getInstance().init(mContext);
                         AudioPlayManager.getInstance().setOnplayingListener(mPlayingListener);
-                        AudioPlayManager.getInstance().startPlay(AudioRecordManager.getInstance().getmSaveWavPath());
+                        AudioPlayManager.getInstance().startPlay(AudioRecordManager2.getInstance().getmSaveWavPath());
                         mProgressing = 0;
-                        startValueAnimator(AudioPlayManager.getInstance().getDuration(AudioRecordManager.getInstance().getmSaveWavPath()));
+                        startValueAnimator(AudioPlayManager.getInstance().getDuration(AudioRecordManager2.getInstance().getmSaveWavPath()));
                         setState(STATE_PLAYING);
                         break;
                     case STATE_PLAYING:
@@ -279,9 +280,6 @@ public class AudioRecordButton extends View {
             case MotionEvent.ACTION_DOWN:
                 mDowPointY = event.getY();
                 mDowPointX = event.getX();
-                if (!checkPermission()) {
-                    return super.onTouchEvent(event);
-                }
                 break;
             case MotionEvent.ACTION_MOVE:
                 onFingerMove(event);
@@ -294,27 +292,28 @@ public class AudioRecordButton extends View {
                     if (mRecordingListener != null) {
                         mRecordingListener.tooShort();
                     }
-                    AudioRecordManager.getInstance().stopRecord();
+                    AudioRecordManager2.getInstance().stopRecord();
                     //删除文件
-                    AudioRecordManager.getInstance().deleteAudioFile();
+                    AudioRecordManager2.getInstance().deleteAudioFile();
                     setState(STATE_START_RECORD);
                     mReady = false;
                 } else {
                     //录制完成
-                    AudioRecordManager.getInstance().stopRecord();
+                    AudioRecordManager2.getInstance().stopRecord();
                     if (mRecordingListener != null) {
                         mRecordingListener.stopRecord();
                     }
                     mReady = false;
+                    setState(STATE_START_RECORD_FINISH_OR_STOP);
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:
                 if (!mReady) {
                     return super.onTouchEvent(event);
                 } else {
-                    AudioRecordManager.getInstance().stopRecord();
+                    AudioRecordManager2.getInstance().stopRecord();
                     //删除文件
-                    AudioRecordManager.getInstance().deleteAudioFile();
+                    AudioRecordManager2.getInstance().deleteAudioFile();
                     setState(STATE_START_RECORD);
                     mReady = false;
                 }
@@ -324,7 +323,8 @@ public class AudioRecordButton extends View {
     }
 
     public void autoStopRecord() {
-        AudioRecordManager.getInstance().stopRecord();
+        AudioRecordManager2.getInstance().stopRecord();
+        setState(STATE_START_RECORD_FINISH_OR_STOP);
         if (mRecordingListener != null) {
             mRecordingListener.stopRecord();
         }
@@ -337,9 +337,9 @@ public class AudioRecordButton extends View {
         boolean isCanceledX = checkCancel(currentX);
         boolean isCanceledY = checkCancel(currentY);
         if (isCanceledX || isCanceledY) {
-            AudioRecordManager.getInstance().stopRecord();
+            AudioRecordManager2.getInstance().stopRecord();
             //删除文件
-            AudioRecordManager.getInstance().deleteAudioFile();
+            AudioRecordManager2.getInstance().deleteAudioFile();
             setState(STATE_START_RECORD);
             mReady = false;
             if (mRecordingListener != null) {
@@ -387,7 +387,7 @@ public class AudioRecordButton extends View {
 
     public void setState(int state) {
         mState = state;
-        invalidate();
+        postInvalidate();
     }
 
     private Activity mActivity;

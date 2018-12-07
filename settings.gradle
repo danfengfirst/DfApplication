@@ -1,1 +1,1 @@
-include ':app', ':audiorecord', ':rulerview'
+include ':app', ':audiorecord', ':rulerview', ':expandableview'

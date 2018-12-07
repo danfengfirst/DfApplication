@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/DfApplication.iml" filepath="$PROJECT_DIR$/DfApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/audiorecord/audiorecord.iml" filepath="$PROJECT_DIR$/audiorecord/audiorecord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expandableview/expandableview.iml" filepath="$PROJECT_DIR$/expandableview/expandableview.iml" />
       <module fileurl="file://$PROJECT_DIR$/rulerview/rulerview.iml" filepath="$PROJECT_DIR$/rulerview/rulerview.iml" />
     </modules>
   </component>

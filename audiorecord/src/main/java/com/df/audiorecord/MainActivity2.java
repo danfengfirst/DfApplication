@@ -4,7 +4,6 @@ import android.Manifest;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.PopupWindow;
 
 import com.df.audiorecord.record.AudioRecordManager;
 import com.df.audiorecord.utils.ToastUitl;

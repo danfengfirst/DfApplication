@@ -7,10 +7,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.df.audiorecord.R;
 import com.df.audiorecord.record.AudioRecordManager;
+import com.df.audiorecord.record.AudioRecordManager2;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -107,7 +109,8 @@ public class TimeAndVolumeView extends View {
     }
 
     public void refreshVolume() {
-        float maxAmp = AudioRecordManager.getInstance().getMaxAmplitude();
+        float maxAmp = AudioRecordManager2.getInstance().getMaxAmplitude();
+        Log.e("处理后录音",  AudioRecordManager2.getInstance().getMaxAmplitude()+"");
         if (maxAmp>1){
             maxAmp=1;
         }
@@ -115,6 +118,7 @@ public class TimeAndVolumeView extends View {
             maxAmp=0;
         }
         int waveH = 2 + Math.round(maxAmp * (7 - 2));//wave 在 2 ~ 7 之间
+        Log.e("处理后录音高度",waveH+"");
         mVolumeList.add(0, waveH);
         mVolumeList.removeLast();
         mAllVolumeList.add(0, waveH);

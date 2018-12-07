@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 26
 
@@ -25,7 +25,11 @@ android {
     configurations.all {
         resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
     }
-
+    greendao {
+        schemaVersion 1 //版本号，升级时可配置 daoPackage'com.inst.greendao3_demo.dao' //包名
+        daoPackage'com.df.rulerview.dao'
+        targetGenDir'src/main/java' //生成目录
+    }
 }
 
 dependencies {
@@ -36,4 +40,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    annotationProcessor rootProject.ext.dependencies["greendao_plugin"]
 }

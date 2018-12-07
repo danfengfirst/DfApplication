@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">rulerview</string>
+    <string name="search_nodata_sorry">抱歉，没有找到与“ %s ”相关的结果</string>
 </resources>

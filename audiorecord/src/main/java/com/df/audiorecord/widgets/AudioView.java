@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.df.audiorecord.R;
+import com.df.audiorecord.record.AudioRecordManager2;
 import com.df.audiorecord.utils.audio.SamplePlayer;
 import com.df.audiorecord.record.AudioPlayManager;
 import com.df.audiorecord.record.AudioRecordManager;
@@ -125,7 +126,7 @@ public class AudioView extends LinearLayout {
     }
 
     private void startPlayTimeCount() {
-        final int timeLimit = (int) Math.ceil(AudioPlayManager.getInstance().getDuration(AudioRecordManager.getInstance().getmSaveWavPath()) / 1000.0f);
+        final int timeLimit = (int) Math.ceil(AudioPlayManager.getInstance().getDuration(AudioRecordManager2.getInstance().getmSaveWavPath()) / 1000.0f);
         releaseTimer();
         mTimeCount = 0;
         mTimer = new Timer();
@@ -193,7 +194,7 @@ public class AudioView extends LinearLayout {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        mFile = new File(AudioRecordManager.getInstance().getmSaveWavPath());
+        mFile = new File(AudioRecordManager2.getInstance().getmSaveWavPath());
         mLoadingKeepGoing = true;
         // Load the sound file in a background thread
         mLoadSoundFileThread = new Thread() {

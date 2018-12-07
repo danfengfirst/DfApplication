@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.df.expandableview.MainActivity">
+    <com.df.expandableview.widget.ExpandableView
+        android:id="@+id/expandableview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--&gt;-->
+
+
+        <com.df.expandableview.widget.ExpandableItemView
+            android:id="@+id/expandable_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <RadioGroup
+                android:id="@+id/comprehensive_rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <RadioButton
+                    android:id="@+id/about_rbt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="症状"
+                    android:checked="true"
+                    android:background="@drawable/search_disease_tab_bg"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    />
+                <RadioButton
+                    android:id="@+id/symptom_rbt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="症状"
+                    android:background="@drawable/search_disease_tab_bg"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    />
+                <RadioButton
+                    android:id="@+id/treatment_rbt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="症状"
+                    android:background="@drawable/search_disease_tab_bg"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    />
+            </RadioGroup>
+            <com.df.expandableview.widget.ExpandableFrameLayout
+                android:id="@+id/content_fl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </com.df.expandableview.widget.ExpandableFrameLayout>
+        </com.df.expandableview.widget.ExpandableItemView>
+        <include layout="@layout/show_more_bottom"/>
+    <!--</LinearLayout>-->
+    </com.df.expandableview.widget.ExpandableView>
+
+</LinearLayout>
